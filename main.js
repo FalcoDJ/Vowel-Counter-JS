@@ -5,6 +5,7 @@ const syllableCountField = document.querySelector('.syllable-count');
 
 const vowels = ['a', 'e', 'i', 'o', 'u'];
 const consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+const symbols = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
 
 function getSyllablesInWord(word = '') {
     // let syllables = word.length > 0 ? 1 : 0;
@@ -17,7 +18,13 @@ function getSyllablesInWord(word = '') {
 function getStatistics() {
     let vowelCount = 0;
     let consonantCount = 0;
-    let text = String(inputField.value);
+
+    let textInput = String(inputField.value);
+    symbols.forEach((s) => {
+        textInput = textInput.replace(s, '');
+    });
+
+    let text = textInput;
     text = Array.from(text).forEach((char) => {
         if (vowels.find((v) => v.toLowerCase() === char)) {
             vowelCount++;
@@ -29,7 +36,7 @@ function getStatistics() {
     });
 
     let syllables = 0;
-    const wordsInText = String(inputField.value).split(' ');
+    const wordsInText = textInput.split(' ');
     wordsInText.forEach((word) => {
         syllables += getSyllablesInWord(word);
     });
