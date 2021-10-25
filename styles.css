@@ -22,7 +22,7 @@ body {
 
 .content {
     display: flex;
-    flex flex-wrap: wrap;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
